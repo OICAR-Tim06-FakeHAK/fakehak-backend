@@ -34,3 +34,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local environment variables file (do not commit)
+.env
