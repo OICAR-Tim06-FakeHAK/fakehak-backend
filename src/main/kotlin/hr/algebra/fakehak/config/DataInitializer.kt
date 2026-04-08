@@ -33,8 +33,7 @@ class DataInitializer {
             employeeRepository.save(
                 Employee(
                     username = "dispatcher",
-                    password = passwordEncoder.encode("" +
-                            "")!!,
+                    password = passwordEncoder.encode("dispatcher123")!!,
                     firstName = "Dispatcher",
                     lastName = "User",
                     role = EmployeeRole.DISPATCHER
