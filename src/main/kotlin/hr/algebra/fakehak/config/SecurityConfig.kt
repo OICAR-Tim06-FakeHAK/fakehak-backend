@@ -44,6 +44,7 @@ class SecurityConfig(
                 auth
                     // Public - no auth required
                     .requestMatchers("/api/auth/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                     .requestMatchers(
                         "/swagger-ui/**",
