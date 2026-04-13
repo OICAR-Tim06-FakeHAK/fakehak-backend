@@ -33,7 +33,7 @@ class AuthServiceImpl(
         }
 
         // Try user login by email
-        val user = userRepository.findByEmail(request.identifier)
+        val user = userRepository.findByEmail(request.identifier).orElse(null)
         if (user != null) {
             if (!passwordEncoder.matches(request.password, user.password)) {
                 throw InvalidOperationException("Invalid credentials")

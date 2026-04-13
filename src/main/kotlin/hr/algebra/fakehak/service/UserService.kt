@@ -7,6 +7,7 @@ import hr.algebra.fakehak.dto.user.UserUpdateRequestDto
 interface UserService {
     fun register(request: UserRegistrationRequestDto): UserResponseDto
     fun getById(id: Long): UserResponseDto
+    fun getByUsername(username: String): UserResponseDto
     fun getAll(): List<UserResponseDto>
     fun update(id: Long, request: UserUpdateRequestDto): UserResponseDto
     fun delete(id: Long)

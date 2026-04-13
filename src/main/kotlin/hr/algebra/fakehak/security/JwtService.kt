@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.Date
+import java.nio.charset.StandardCharsets
 import javax.crypto.SecretKey
 
 @Service
@@ -16,7 +17,11 @@ class JwtService(
 ) {
 
     private val key: SecretKey by lazy {
-        Keys.hmacShaKeyFor(secret.toByteArray())
+        val secretBytes = secret.trim().toByteArray(StandardCharsets.UTF_8)
+        require(secretBytes.size >= 32) {
+            "JWT secret must be at least 32 bytes for HS256. Set JWT_SECRET to a longer value."
+        }
+        Keys.hmacShaKeyFor(secretBytes)
     }
 
     fun generateToken(username: String, role: String): String {

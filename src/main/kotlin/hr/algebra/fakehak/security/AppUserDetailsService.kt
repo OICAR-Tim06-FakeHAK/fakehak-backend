@@ -30,7 +30,7 @@ class AppUserDetailsService(
         }
 
         // Try user by email
-        val appUser = userRepository.findByEmail(identifier)
+        val appUser = userRepository.findByEmail(identifier).orElse(null)
         if (appUser != null) {
             return User.builder()
                 .username(appUser.email)
