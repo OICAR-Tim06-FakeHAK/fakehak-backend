@@ -45,6 +45,13 @@ class UserServiceImpl(
     }
 
     @Transactional(readOnly = true)
+    override fun getByUsername(username: String): UserResponseDto {
+        return userRepository.findByEmail(username)
+            .map { it.toResponse() }
+            .orElseThrow { ResourceNotFoundException("User with username '$username' not found") }
+    }
+
+    @Transactional(readOnly = true)
     override fun getAll(): List<UserResponseDto> {
         return userRepository.findAll().map { it.toResponse() }
     }
